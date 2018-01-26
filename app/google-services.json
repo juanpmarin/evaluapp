@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "438786050814",
+    "firebase_url": "https://evaluapp-7e352.firebaseio.com",
+    "project_id": "evaluapp-7e352",
+    "storage_bucket": "evaluapp-7e352.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438786050814:android:544f300c5f2233c6",
+        "android_client_info": {
+          "package_name": "io.gitlab.innom.evaluapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438786050814-qn2bcv8r6oroe99jqcd3m6gkkhrli4j8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.gitlab.innom.evaluapp",
+            "certificate_hash": "17fac9b1a3c4261e7118da973a1061a3510b766f"
+          }
+        },
+        {
+          "client_id": "438786050814-cf3g8qpkqsgqlm0m2v8q25ppb17lgof0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwgofMkZYyFt94-YwoYBCAcFbSMxZ4fFU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438786050814-cf3g8qpkqsgqlm0m2v8q25ppb17lgof0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
