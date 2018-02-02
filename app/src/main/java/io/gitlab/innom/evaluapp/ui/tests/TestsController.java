@@ -23,8 +23,6 @@ public class TestsController extends TypedEpoxyController<Test> {
     @Override
     protected void buildModels(Test data) {
         header.title(context.getString(R.string.my_tests));
-
-        new CommonHeaderBindingModel_().id("header").title("oeee").addTo(this);
     }
 
 }

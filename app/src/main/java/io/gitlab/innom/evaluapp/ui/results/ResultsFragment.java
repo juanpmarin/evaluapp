@@ -15,8 +15,8 @@ import io.gitlab.innom.evaluapp.ui.tests.TestsFragment;
 
 public class ResultsFragment extends Fragment {
 
-    public static TestsFragment newInstance() {
-        TestsFragment fragment = new TestsFragment();
+    public static ResultsFragment newInstance() {
+        ResultsFragment fragment = new ResultsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
