@@ -5,7 +5,7 @@
 
         <variable
             name="callback"
-            type="io.gitlab.innom.evaluapp.ui.LoginCallback" />
+            type="io.gitlab.innom.evaluapp.ui.login.LoginCallback" />
 
         <import type="io.gitlab.innom.evaluapp.domain.UserType" />
     </data>
@@ -13,7 +13,7 @@
     <android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="io.gitlab.innom.evaluapp.ui.LoginActivity">
+        tools:context="io.gitlab.innom.evaluapp.ui.login.LoginActivity">
 
         <FrameLayout
             android:id="@+id/header"
@@ -39,7 +39,7 @@
         </FrameLayout>
 
         <TextView
-            android:id="@+id/loginTitle"
+            android:id="@+id/login_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/header" />
 
         <LinearLayout
-            android:id="@+id/teacherButton"
+            android:id="@+id/teacher_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -65,9 +65,9 @@
             android:onClick="@{() -> callback.login(UserType.TEACHER)}"
             android:orientation="vertical"
             android:padding="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/studentButton"
+            app:layout_constraintEnd_toStartOf="@+id/student_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loginTitle">
+            app:layout_constraintTop_toBottomOf="@id/login_title">
 
             <ImageView
                 android:layout_width="96dp"
@@ -87,7 +87,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/studentButton"
+            android:id="@+id/student_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -99,8 +99,8 @@
             android:orientation="vertical"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/teacherButton"
-            app:layout_constraintTop_toBottomOf="@id/loginTitle">
+            app:layout_constraintStart_toEndOf="@id/teacher_button"
+            app:layout_constraintTop_toBottomOf="@id/login_title">
 
             <ImageView
                 android:layout_width="96dp"

@@ -1,4 +1,4 @@
-package io.gitlab.innom.evaluapp.ui;
+package io.gitlab.innom.evaluapp.ui.login;
 
 import io.gitlab.innom.evaluapp.domain.UserType;
 
