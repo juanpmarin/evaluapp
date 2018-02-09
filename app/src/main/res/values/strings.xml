@@ -8,4 +8,6 @@
     <string name="im_student">Soy estudiante</string>
     <string name="my_tests">Mis exámenes</string>
     <string name="results">Resultados</string>
+    <string name="you_created_no_tests">Aún no has creado ningún examen</string>
+    <string name="create_test_now">Crea uno ahora</string>
 </resources>

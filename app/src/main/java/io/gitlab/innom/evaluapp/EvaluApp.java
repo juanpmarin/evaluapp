@@ -3,6 +3,8 @@ package io.gitlab.innom.evaluapp;
 import android.app.Activity;
 import android.app.Application;
 
+import com.facebook.stetho.Stetho;
+
 import javax.inject.Inject;
 
 import dagger.android.DispatchingAndroidInjector;
@@ -18,10 +20,13 @@ public class EvaluApp extends Application implements HasActivityInjector {
     @Override
     public void onCreate() {
         super.onCreate();
+
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+
         AppInjector.init(this);
+        Stetho.initializeWithDefaults(this);
     }
 
     @Override

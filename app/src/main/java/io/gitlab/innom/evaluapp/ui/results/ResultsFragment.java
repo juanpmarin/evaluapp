@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import io.gitlab.innom.evaluapp.R;
-import io.gitlab.innom.evaluapp.ui.tests.TestsFragment;
 
 public class ResultsFragment extends Fragment {
 

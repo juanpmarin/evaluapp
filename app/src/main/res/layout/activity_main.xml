@@ -15,7 +15,7 @@
 
         <variable
             name="currentNavigationItem"
-            type="java.lang.Integer" />
+            type="int" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout

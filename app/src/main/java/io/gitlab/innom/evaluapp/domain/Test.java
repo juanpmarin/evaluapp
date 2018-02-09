@@ -11,6 +11,14 @@ public class Test {
 
     private String name;
 
+    public Test() {
+
+    }
+
+    public Test(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

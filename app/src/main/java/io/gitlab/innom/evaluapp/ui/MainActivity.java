@@ -9,16 +9,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import dagger.android.support.DaggerAppCompatActivity;
 import io.gitlab.innom.evaluapp.R;
 import io.gitlab.innom.evaluapp.databinding.ActivityMainBinding;
 import io.gitlab.innom.evaluapp.ui.results.ResultsFragment;
 import io.gitlab.innom.evaluapp.ui.tests.TestsFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends DaggerAppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private MainViewModel viewModel;
 

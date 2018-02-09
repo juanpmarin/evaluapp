@@ -6,6 +6,8 @@ import io.gitlab.innom.evaluapp.ui.MainActivity;
 
 @Module
 public abstract class MainActivityModule {
+
     @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
     abstract MainActivity contributeMainActivity();
+
 }

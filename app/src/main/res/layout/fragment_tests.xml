@@ -1,13 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
     android:name="io.gitlab.innom.evaluapp.ui.tests.TestsFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    app:layoutManager="LinearLayoutManager"
-    tools:context="io.gitlab.innom.evaluapp.ui.tests.TestsFragment"
-    tools:listitem="@layout/fragment_item" />
+    tools:context="io.gitlab.innom.evaluapp.ui.tests.TestsFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="adapter"
+            type="android.support.v7.widget.RecyclerView.Adapter" />
+
+        <variable
+            name="showHint"
+            type="Boolean" />
+
+        <variable
+            name="onAddClicked"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapter="@{adapter}"
+            app:layoutManager="LinearLayoutManager" />
+
+        <TextView
+            android:id="@+id/hint_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="18dp"
+            android:layout_marginStart="18dp"
+            android:text="@string/you_created_no_tests"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:visibility="@{showHint ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/hint_action"
+            app:layout_constraintRight_toLeftOf="@+id/fab"
+            app:layout_constraintTop_toTopOf="@+id/fab" />
+
+        <TextView
+            android:id="@+id/hint_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="18dp"
+            android:layout_marginStart="18dp"
+            android:text="@string/create_test_now"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:visibility="@{showHint ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/fab"
+            app:layout_constraintRight_toLeftOf="@+id/fab"
+            app:layout_constraintTop_toBottomOf="@id/hint_title" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:onClickListener="@{onAddClicked}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/ic_add_white_24dp" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

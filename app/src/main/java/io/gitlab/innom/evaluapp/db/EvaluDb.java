@@ -8,7 +8,9 @@ import io.gitlab.innom.evaluapp.domain.Test;
 
 @Database(entities = {
         Question.class,
-        Test.class}, version = 0)
+        Test.class}, version = 1)
 public abstract class EvaluDb extends RoomDatabase {
+
+    abstract public TestDao testDao();
 
 }

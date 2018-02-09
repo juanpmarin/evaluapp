@@ -1,18 +1,32 @@
 package io.gitlab.innom.evaluapp.ui.tests;
 
-import android.content.Context;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import io.gitlab.innom.evaluapp.R;
+import javax.inject.Inject;
 
-public class TestsFragment extends Fragment {
+import io.gitlab.innom.evaluapp.R;
+import io.gitlab.innom.evaluapp.databinding.FragmentTestsBinding;
+import io.gitlab.innom.evaluapp.di.Injectable;
+import io.gitlab.innom.evaluapp.domain.Status;
+
+public class TestsFragment extends Fragment implements Injectable {
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+
+    private FragmentTestsBinding binding;
+    private TestsViewModel testsViewModel;
+    private TestsController testsController;
 
     public static TestsFragment newInstance() {
         TestsFragment fragment = new TestsFragment();
@@ -22,23 +36,39 @@ public class TestsFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        testsViewModel = ViewModelProviders.of(this, viewModelFactory).get(TestsViewModel.class);
+
+        binding.setOnAddClicked(v -> testsViewModel.insert());
+        initTestsList();
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tests, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tests, container, false);
+        testsController = new TestsController(getContext());
 
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            TestsController testsController = new TestsController(context);
+        binding.setAdapter(testsController.getAdapter());
 
-            RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(testsController.getAdapter());
+        return binding.getRoot();
+    }
 
-            testsController.setData(null);
-        }
+    private void initTestsList() {
+        testsViewModel.getTests().observe(this, testsResource -> {
+            testsController.setData(testsResource);
 
-        return view;
+            if (testsResource != null && testsResource.data != null) {
+                binding.setShowHint(testsResource.status != Status.LOADING && testsResource.data.isEmpty());
+            }
+        });
+    }
+
+    private void createNewTest() {
+        Intent intent = new Intent(getContext(), CreateTestActivity.class);
+        startActivity(intent);
     }
 
 }

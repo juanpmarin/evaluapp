@@ -6,6 +6,8 @@ import io.gitlab.innom.evaluapp.ui.tests.TestsFragment;
 
 @Module
 public abstract class FragmentBuildersModule {
+
     @ContributesAndroidInjector
     abstract TestsFragment contributeRepoFragment();
+
 }

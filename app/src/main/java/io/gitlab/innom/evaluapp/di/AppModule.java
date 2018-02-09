@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import io.gitlab.innom.evaluapp.db.EvaluDb;
+import io.gitlab.innom.evaluapp.db.TestDao;
 
 @Module(includes = ViewModelModule.class)
 class AppModule {
@@ -16,6 +17,12 @@ class AppModule {
     @Provides
     EvaluDb provideDb(Application app) {
         return Room.databaseBuilder(app, EvaluDb.class, "evalu.db").build();
+    }
+
+    @Singleton
+    @Provides
+    TestDao provideTestDao(EvaluDb db) {
+        return db.testDao();
     }
 
 }
