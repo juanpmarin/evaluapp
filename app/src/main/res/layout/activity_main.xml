@@ -21,7 +21,7 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="io.gitlab.innom.evaluapp.ui.MainActivity">
+        tools:context="io.github.juanpmarin.evaluapp.ui.MainActivity">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <io.gitlab.innom.evaluapp.ui.common.NonSwipeableViewPager
+            <io.github.juanpmarin.evaluapp.ui.common.NonSwipeableViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

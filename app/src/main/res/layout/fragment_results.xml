@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
-    android:name="io.gitlab.innom.evaluapp.ui.results.ResultsFragment"
+    android:name="io.github.juanpmarin.evaluapp.ui.results.ResultsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="io.gitlab.innom.evaluapp.ui.results.ResultsFragment"
+    tools:context="io.github.juanpmarin.evaluapp.ui.results.ResultsFragment"
     tools:listitem="@layout/fragment_item2" />

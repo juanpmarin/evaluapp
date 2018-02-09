@@ -6,7 +6,7 @@
 
         <variable
             name="test"
-            type="io.gitlab.innom.evaluapp.domain.Test" />
+            type="io.github.juanpmarin.evaluapp.domain.Test" />
     </data>
 
     <android.support.constraint.ConstraintLayout

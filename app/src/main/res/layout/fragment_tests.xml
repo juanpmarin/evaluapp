@@ -2,8 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:name="io.gitlab.innom.evaluapp.ui.tests.TestsFragment"
-    tools:context="io.gitlab.innom.evaluapp.ui.tests.TestsFragment">
+    android:name="io.github.juanpmarin.evaluapp.ui.tests.TestsFragment"
+    tools:context="io.github.juanpmarin.evaluapp.ui.tests.TestsFragment">
 
     <data>
 

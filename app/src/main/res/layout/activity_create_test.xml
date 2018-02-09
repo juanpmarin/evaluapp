@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.gitlab.innom.evaluapp.ui.tests.CreateTestActivity">
+    tools:context="io.github.juanpmarin.evaluapp.ui.tests.CreateTestActivity">
 
 </android.support.constraint.ConstraintLayout>

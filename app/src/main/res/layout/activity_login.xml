@@ -5,15 +5,15 @@
 
         <variable
             name="callback"
-            type="io.gitlab.innom.evaluapp.ui.login.LoginCallback" />
+            type="io.github.juanpmarin.evaluapp.ui.login.LoginCallback" />
 
-        <import type="io.gitlab.innom.evaluapp.domain.UserType" />
+        <import type="io.github.juanpmarin.evaluapp.domain.UserType" />
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="io.gitlab.innom.evaluapp.ui.login.LoginActivity">
+        tools:context="io.github.juanpmarin.evaluapp.ui.login.LoginActivity">
 
         <FrameLayout
             android:id="@+id/header"
