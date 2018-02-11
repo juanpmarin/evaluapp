@@ -13,7 +13,7 @@ import io.github.juanpmarin.evaluapp.EvaluApp;
 @Component(modules = {
         AndroidInjectionModule.class,
         AppModule.class,
-        MainActivityModule.class
+        ActivityModule.class
 })
 public interface AppComponent {
     void inject(EvaluApp evaluApp);

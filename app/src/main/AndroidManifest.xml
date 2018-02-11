@@ -22,7 +22,9 @@
             android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.tests.CreateTestActivity" />
+            android:name=".ui.tests.EditTestActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysVisible" />
     </application>
 
 </manifest>

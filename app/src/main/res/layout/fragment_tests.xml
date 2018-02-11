@@ -15,7 +15,7 @@
 
         <variable
             name="showHint"
-            type="Boolean" />
+            type="boolean" />
 
         <variable
             name="onAddClicked"

@@ -10,4 +10,6 @@
     <string name="results">Resultados</string>
     <string name="you_created_no_tests">Aún no has creado ningún examen</string>
     <string name="create_test_now">Crea uno ahora</string>
+    <string name="enter_title">Ingresa el título</string>
+    <string name="save">Guardar</string>
 </resources>

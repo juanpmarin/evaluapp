@@ -38,9 +38,10 @@ public class TestsFragment extends Fragment implements Injectable {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        testsViewModel = ViewModelProviders.of(this, viewModelFactory).get(TestsViewModel.class);
+        testsViewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(TestsViewModel.class);
 
-        binding.setOnAddClicked(v -> testsViewModel.insert());
+        binding.setOnAddClicked(v -> createNewTest());
         initTestsList();
     }
 
@@ -58,16 +59,15 @@ public class TestsFragment extends Fragment implements Injectable {
 
     private void initTestsList() {
         testsViewModel.getTests().observe(this, testsResource -> {
-            testsController.setData(testsResource);
-
             if (testsResource != null && testsResource.data != null) {
+                testsController.setData(testsResource.data);
                 binding.setShowHint(testsResource.status != Status.LOADING && testsResource.data.isEmpty());
             }
         });
     }
 
     private void createNewTest() {
-        Intent intent = new Intent(getContext(), CreateTestActivity.class);
+        Intent intent = new Intent(getContext(), EditTestActivity.class);
         startActivity(intent);
     }
 

@@ -10,10 +10,9 @@ import java.util.List;
 import io.github.juanpmarin.evaluapp.CommonHeaderBindingModel_;
 import io.github.juanpmarin.evaluapp.R;
 import io.github.juanpmarin.evaluapp.TestBindingModel_;
-import io.github.juanpmarin.evaluapp.domain.Resource;
 import io.github.juanpmarin.evaluapp.domain.Test;
 
-public class TestsController extends TypedEpoxyController<Resource<List<Test>>> {
+public class TestsController extends TypedEpoxyController<List<Test>> {
 
     @AutoModel
     CommonHeaderBindingModel_ header;
@@ -25,16 +24,15 @@ public class TestsController extends TypedEpoxyController<Resource<List<Test>>> 
     }
 
     @Override
-    protected void buildModels(Resource<List<Test>> testsResource) {
-        header.title(context.getString(R.string.my_tests));
+    protected void buildModels(List<Test> tests) {
+        header.title(context.getString(R.string.my_tests))
+                .addIf(!tests.isEmpty(), this);
 
-        if (testsResource.data != null) {
-            for (Test test : testsResource.data) {
-                new TestBindingModel_()
-                        .id(test.getId())
-                        .test(test)
-                        .addTo(this);
-            }
+        for (Test test : tests) {
+            new TestBindingModel_()
+                    .id(test.getId())
+                    .test(test)
+                    .addTo(this);
         }
     }
 

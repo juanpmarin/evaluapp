@@ -1,5 +1,6 @@
 package io.github.juanpmarin.evaluapp.ui;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.view.MenuItem;
 
+import javax.inject.Inject;
+
 import dagger.android.support.DaggerAppCompatActivity;
 import io.github.juanpmarin.evaluapp.R;
 import io.github.juanpmarin.evaluapp.databinding.ActivityMainBinding;
@@ -19,13 +22,17 @@ import io.github.juanpmarin.evaluapp.ui.tests.TestsFragment;
 
 public class MainActivity extends DaggerAppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private MainViewModel viewModel;
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+
+    private MainViewModel mainViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        setSupportActionBar(findViewById(R.id.toolbar));
+
+        setSupportActionBar(binding.toolbar);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -34,10 +41,10 @@ public class MainActivity extends DaggerAppCompatActivity implements BottomNavig
         binding.setNavigationCallback(this);
         binding.setNavigationAdapter(getNavigationAdapter());
 
-        viewModel = ViewModelProviders.of(this)
+        mainViewModel = ViewModelProviders.of(this)
                 .get(MainViewModel.class);
 
-        viewModel.getCurrentNavigationItem()
+        mainViewModel.getCurrentNavigationItem()
                 .observe(this, binding::setCurrentNavigationItem);
     }
 
@@ -59,7 +66,7 @@ public class MainActivity extends DaggerAppCompatActivity implements BottomNavig
         }
 
         if (item >= 0) {
-            viewModel.setCurrentNavigationItem(item);
+            mainViewModel.setCurrentNavigationItem(item);
             return true;
         }
 

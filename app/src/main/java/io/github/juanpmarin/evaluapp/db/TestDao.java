@@ -7,15 +7,16 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+import io.github.juanpmarin.evaluapp.domain.Question;
 import io.github.juanpmarin.evaluapp.domain.Test;
 
 @Dao
 public interface TestDao {
 
-    @Query("SELECT * FROM Test")
+    @Query("SELECT * FROM Test ORDER BY created DESC")
     LiveData<List<Test>> findAll();
 
-    @Insert()
-    void insert(Test... test);
+    @Insert
+    void insert(Test test, List<Question> questions);
 
 }

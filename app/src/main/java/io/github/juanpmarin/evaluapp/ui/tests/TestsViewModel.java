@@ -28,8 +28,4 @@ public class TestsViewModel extends ViewModel {
         return tests;
     }
 
-    public void insert() {
-        this.testRepository.insert(new Test("Test" + Math.random()));
-    }
-
 }
