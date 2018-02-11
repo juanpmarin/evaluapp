@@ -4,8 +4,11 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -13,13 +16,14 @@ import dagger.android.support.DaggerAppCompatActivity;
 import io.github.juanpmarin.evaluapp.R;
 import io.github.juanpmarin.evaluapp.databinding.ActivityEditTestBinding;
 
-public class EditTestActivity extends DaggerAppCompatActivity {
+public class EditTestActivity extends DaggerAppCompatActivity implements EditQuestionsController.AdapterCallbacks {
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
     private ActivityEditTestBinding binding;
     private EditTestViewModel editTestViewModel;
+    private EditQuestionsController editQuestionsController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,11 @@ public class EditTestActivity extends DaggerAppCompatActivity {
 
         editTestViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(EditTestViewModel.class);
+
+        editQuestionsController = new EditQuestionsController(this, this);
+
+        initializeErrorPresenter();
+        initializeQuestionsList();
     }
 
     @Override
@@ -59,9 +68,31 @@ public class EditTestActivity extends DaggerAppCompatActivity {
         }
     }
 
+    private void initializeErrorPresenter() {
+        editTestViewModel.getError().observe(this, resId -> {
+            if (resId != null) {
+                Snackbar.make(binding.title, resId, Snackbar.LENGTH_SHORT)
+                        .show();
+            }
+        });
+    }
+
+    private void initializeQuestionsList() {
+        binding.setAdapter(editQuestionsController.getAdapter());
+        editQuestionsController.setData(Collections.emptyList());
+    }
+
+    @Override
+    public void addQuestion() {
+
+    }
+
     private void saveTest() {
-        editTestViewModel.saveTest(binding.title.getText().toString());
-        finish();
+        boolean saved = editTestViewModel.saveTest(binding.title.getText().toString());
+
+        if (saved) {
+            finish();
+        }
     }
 
 }

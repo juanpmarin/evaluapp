@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="adapter"
+            type="android.support.v7.widget.RecyclerView.Adapter" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -52,6 +55,20 @@
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.airbnb.epoxy.EpoxyRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:adapter="@{adapter}" />
+
+        </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

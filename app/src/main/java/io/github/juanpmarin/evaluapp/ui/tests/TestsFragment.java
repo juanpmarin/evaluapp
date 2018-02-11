@@ -50,7 +50,10 @@ public class TestsFragment extends Fragment implements Injectable {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tests, container, false);
-        testsController = new TestsController(getContext());
+
+        if (getContext() != null) {
+            testsController = new TestsController(getContext());
+        }
 
         binding.setAdapter(testsController.getAdapter());
 

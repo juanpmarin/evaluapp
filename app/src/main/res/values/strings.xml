@@ -12,4 +12,7 @@
     <string name="create_test_now">Crea uno ahora</string>
     <string name="enter_title">Ingresa el título</string>
     <string name="save">Guardar</string>
+    <string name="error_must_insert_title">Debes ingresar un título para el examen</string>
+    <string name="add_question">Agregar pregunta</string>
+    <string name="questions">Preguntas</string>
 </resources>

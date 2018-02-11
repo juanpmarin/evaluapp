@@ -9,5 +9,4 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="io.github.juanpmarin.evaluapp.ui.results.ResultsFragment"
-    tools:listitem="@layout/fragment_item2" />
+    tools:context="io.github.juanpmarin.evaluapp.ui.results.ResultsFragment" />

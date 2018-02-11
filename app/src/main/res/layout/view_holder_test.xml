@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="io.github.juanpmarin.evaluapp.ui.DateConverter" />
+
         <variable
             name="test"
             type="io.github.juanpmarin.evaluapp.domain.Test" />
@@ -11,7 +13,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
@@ -22,14 +24,26 @@
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:gravity="start"
             android:text="@{test.name}"
             android:textAlignment="viewStart"
             android:textAppearance="@android:style/TextAppearance.Medium"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/created"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@{DateConverter.convertDateToDisplayedText(test.created)}"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name" />
 
         <View
             android:layout_width="match_parent"

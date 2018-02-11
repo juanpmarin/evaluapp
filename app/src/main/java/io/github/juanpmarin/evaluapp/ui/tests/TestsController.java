@@ -1,6 +1,7 @@
 package io.github.juanpmarin.evaluapp.ui.tests;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.airbnb.epoxy.AutoModel;
 import com.airbnb.epoxy.TypedEpoxyController;
@@ -17,9 +18,10 @@ public class TestsController extends TypedEpoxyController<List<Test>> {
     @AutoModel
     CommonHeaderBindingModel_ header;
 
+    @NonNull
     private Context context;
 
-    TestsController(Context context) {
+    TestsController(@NonNull Context context) {
         this.context = context;
     }
 
