@@ -16,6 +16,10 @@
         <variable
             name="currentNavigationItem"
             type="int" />
+
+        <variable
+            name="cosa"
+            type="android.databinding.ObservableInt" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout

@@ -24,6 +24,7 @@ const siteConfig = {
         primaryColor: '#BA0F17',
         secondaryColor: '#32BEA6',
     },
+    users: [],
     // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
     copyright:
     'Copyright © ' +

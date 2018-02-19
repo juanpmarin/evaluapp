@@ -64,7 +64,8 @@ public class TestsFragment extends Fragment implements Injectable {
         testsViewModel.getTests().observe(this, testsResource -> {
             if (testsResource != null && testsResource.data != null) {
                 testsController.setData(testsResource.data);
-                binding.setShowHint(testsResource.status != Status.LOADING && testsResource.data.isEmpty());
+                binding.list.post(() -> binding.setShowHint(testsResource.status != Status.LOADING &&
+                        testsResource.data.isEmpty()));
             }
         });
     }

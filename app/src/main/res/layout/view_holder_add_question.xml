@@ -33,7 +33,7 @@
             android:paddingTop="16dp"
             android:text="@string/add_question"
             android:textAllCaps="true"
-            android:textColor="#484848"
+            android:textColor="@color/colorPrimaryText"
             android:textSize="16sp" />
     </LinearLayout>
 </layout>
