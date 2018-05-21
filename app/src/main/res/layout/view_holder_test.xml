@@ -9,14 +9,19 @@
         <variable
             name="test"
             type="io.github.juanpmarin.evaluapp.domain.Test" />
+
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
+        android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
+        android:onClickListener="@{onClickListener}"
         android:paddingEnd="36dp"
         android:paddingStart="36dp">
 

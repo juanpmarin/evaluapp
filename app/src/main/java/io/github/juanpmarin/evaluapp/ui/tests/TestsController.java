@@ -2,8 +2,11 @@ package io.github.juanpmarin.evaluapp.ui.tests;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.view.View;
 
 import com.airbnb.epoxy.AutoModel;
+import com.airbnb.epoxy.DataBindingEpoxyModel;
+import com.airbnb.epoxy.OnModelClickListener;
 import com.airbnb.epoxy.TypedEpoxyController;
 
 import java.util.List;
@@ -21,8 +24,12 @@ public class TestsController extends TypedEpoxyController<List<Test>> {
     @NonNull
     private Context context;
 
-    TestsController(@NonNull Context context) {
+    @NonNull
+    private AdapterCallbacks callbacks;
+
+    TestsController(@NonNull Context context, @NonNull AdapterCallbacks callbacks) {
         this.context = context;
+        this.callbacks = callbacks;
     }
 
     @Override
@@ -34,8 +41,15 @@ public class TestsController extends TypedEpoxyController<List<Test>> {
             new TestBindingModel_()
                     .id(test.getId())
                     .test(test)
+                    .onClickListener(v -> callbacks.testClicked(test.getId()))
                     .addTo(this);
         }
+    }
+
+    public interface AdapterCallbacks {
+
+        void testClicked(String id);
+
     }
 
 }

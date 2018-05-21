@@ -18,6 +18,8 @@ import io.github.juanpmarin.evaluapp.databinding.ActivityEditTestBinding;
 
 public class EditTestActivity extends DaggerAppCompatActivity implements EditQuestionsController.AdapterCallbacks {
 
+    public static final String TEST_ID = "testId";
+
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
@@ -45,6 +47,14 @@ public class EditTestActivity extends DaggerAppCompatActivity implements EditQue
 
         initializeErrorPresenter();
         initializeQuestionsList();
+
+        editTestViewModel.getTest().observe(this, test -> {
+            if (test != null) {
+                binding.title.setText(test.getName());
+            }
+        });
+
+        editTestViewModel.setUp(getIntent().getStringExtra(TEST_ID));
     }
 
     @Override

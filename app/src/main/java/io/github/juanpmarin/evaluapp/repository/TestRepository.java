@@ -30,8 +30,16 @@ public class TestRepository {
         return map(this.testDao.findAll(), Resource::success);
     }
 
+    public LiveData<Test> findById(String id) {
+        return testDao.findById(id);
+    }
+
     public void insert(Test test) {
-        appExecutors.diskIO().execute(() -> this.testDao.insert(test, Collections.emptyList()));
+        appExecutors.diskIO().execute(() -> this.testDao.insert(test));
+    }
+
+    public void update(Test test) {
+        appExecutors.diskIO().execute(() -> this.testDao.update(test));
     }
 
 }

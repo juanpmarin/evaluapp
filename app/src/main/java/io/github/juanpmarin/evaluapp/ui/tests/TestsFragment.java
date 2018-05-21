@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import io.github.juanpmarin.evaluapp.databinding.FragmentTestsBinding;
 import io.github.juanpmarin.evaluapp.di.Injectable;
 import io.github.juanpmarin.evaluapp.domain.Status;
 
-public class TestsFragment extends Fragment implements Injectable {
+public class TestsFragment extends Fragment implements Injectable, TestsController.AdapterCallbacks {
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -41,7 +42,7 @@ public class TestsFragment extends Fragment implements Injectable {
         testsViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(TestsViewModel.class);
 
-        binding.setOnAddClicked(v -> createNewTest());
+        binding.setOnAddClicked(v -> editTest());
         initTestsList();
     }
 
@@ -52,7 +53,7 @@ public class TestsFragment extends Fragment implements Injectable {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tests, container, false);
 
         if (getContext() != null) {
-            testsController = new TestsController(getContext());
+            testsController = new TestsController(getContext(), this);
         }
 
         binding.setAdapter(testsController.getAdapter());
@@ -70,9 +71,23 @@ public class TestsFragment extends Fragment implements Injectable {
         });
     }
 
-    private void createNewTest() {
+    private void editTest() {
+        editTest(null);
+    }
+
+    private void editTest(String id) {
         Intent intent = new Intent(getContext(), EditTestActivity.class);
+
+        if (!TextUtils.isEmpty(id)) {
+            intent.putExtra(EditTestActivity.TEST_ID, id);
+        }
+
         startActivity(intent);
+    }
+
+    @Override
+    public void testClicked(String id) {
+        editTest(id);
     }
 
 }
