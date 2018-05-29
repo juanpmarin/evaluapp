@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -8,6 +9,10 @@
         <variable
             name="adapter"
             type="android.support.v7.widget.RecyclerView.Adapter" />
+
+        <variable
+            name="showHint"
+            type="boolean" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -56,7 +61,7 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -68,7 +73,67 @@
                 android:layout_height="match_parent"
                 app:adapter="@{adapter}" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/hint_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="40dp"
+                android:layout_marginEnd="89dp"
+                android:layout_marginStart="89dp"
+                android:text="@string/now_add_a_question"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <com.github.clans.fab.FloatingActionMenu
+                android:id="@+id/fab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/fab_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:srcCompat="@drawable/ic_add_white_24dp"
+                fab:menu_colorNormal="?colorAccent"
+                fab:menu_colorPressed="?colorAccent"
+                fab:menu_colorRipple="?colorControlHighlight">
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_true_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_true_false_black_24dp"
+                    fab:fab_colorNormal="@android:color/white"
+                    fab:fab_colorPressed="@android:color/white"
+                    fab:fab_colorRipple="?colorControlHighlight"
+                    fab:fab_label="@string/true_false"
+                    fab:fab_size="mini" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_multiple_choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_multiple_choice_black_24dp"
+                    fab:fab_colorNormal="@android:color/white"
+                    fab:fab_colorPressed="@android:color/white"
+                    fab:fab_colorRipple="?colorControlHighlight"
+                    fab:fab_label="@string/multiple_choice"
+                    fab:fab_size="mini" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_complete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_complete_black_24dp"
+                    fab:fab_colorNormal="@android:color/white"
+                    fab:fab_colorPressed="@android:color/white"
+                    fab:fab_colorRipple="?colorControlHighlight"
+                    fab:fab_label="@string/complete"
+                    fab:fab_size="mini" />
+
+            </com.github.clans.fab.FloatingActionMenu>
+
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

@@ -16,6 +16,7 @@ import io.github.juanpmarin.evaluapp.EvaluApp;
         ActivityModule.class
 })
 public interface AppComponent {
+
     void inject(EvaluApp evaluApp);
 
     @Component.Builder
@@ -25,4 +26,5 @@ public interface AppComponent {
 
         AppComponent build();
     }
+
 }

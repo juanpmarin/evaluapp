@@ -2,23 +2,19 @@ package io.github.juanpmarin.evaluapp.repository;
 
 import android.arch.lifecycle.LiveData;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.github.juanpmarin.evaluapp.AppExecutors;
 import io.github.juanpmarin.evaluapp.db.TestDao;
-import io.github.juanpmarin.evaluapp.domain.Resource;
 import io.github.juanpmarin.evaluapp.domain.Test;
-
-import static android.arch.lifecycle.Transformations.map;
 
 public class TestRepository {
 
     private final TestDao testDao;
 
-    private AppExecutors appExecutors;
+    private final AppExecutors appExecutors;
 
     @Inject
     public TestRepository(TestDao testDao, AppExecutors appExecutors) {
@@ -26,8 +22,8 @@ public class TestRepository {
         this.appExecutors = appExecutors;
     }
 
-    public LiveData<Resource<List<Test>>> findAll() {
-        return map(this.testDao.findAll(), Resource::success);
+    public LiveData<List<Test>> findAll() {
+        return this.testDao.findAll();
     }
 
     public LiveData<Test> findById(String id) {

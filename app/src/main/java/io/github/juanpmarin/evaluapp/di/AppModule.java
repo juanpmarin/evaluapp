@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import io.github.juanpmarin.evaluapp.db.EvaluDb;
+import io.github.juanpmarin.evaluapp.db.QuestionDao;
 import io.github.juanpmarin.evaluapp.db.TestDao;
 
 @Module(includes = ViewModelModule.class)
@@ -23,6 +24,12 @@ class AppModule {
     @Provides
     TestDao provideTestDao(EvaluDb db) {
         return db.testDao();
+    }
+
+    @Singleton
+    @Provides
+    QuestionDao provideQuestionDao(EvaluDb db) {
+        return db.questionDao();
     }
 
 }

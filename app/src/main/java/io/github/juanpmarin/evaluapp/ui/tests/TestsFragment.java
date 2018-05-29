@@ -18,7 +18,6 @@ import javax.inject.Inject;
 import io.github.juanpmarin.evaluapp.R;
 import io.github.juanpmarin.evaluapp.databinding.FragmentTestsBinding;
 import io.github.juanpmarin.evaluapp.di.Injectable;
-import io.github.juanpmarin.evaluapp.domain.Status;
 
 public class TestsFragment extends Fragment implements Injectable, TestsController.AdapterCallbacks {
 
@@ -56,17 +55,15 @@ public class TestsFragment extends Fragment implements Injectable, TestsControll
             testsController = new TestsController(getContext(), this);
         }
 
-        binding.setAdapter(testsController.getAdapter());
-
         return binding.getRoot();
     }
 
     private void initTestsList() {
-        testsViewModel.getTests().observe(this, testsResource -> {
-            if (testsResource != null && testsResource.data != null) {
-                testsController.setData(testsResource.data);
-                binding.list.post(() -> binding.setShowHint(testsResource.status != Status.LOADING &&
-                        testsResource.data.isEmpty()));
+        binding.setAdapter(testsController.getAdapter());
+        testsViewModel.getTests().observe(this, tests -> {
+            if (tests != null) {
+                testsController.setData(tests);
+                binding.list.post(() -> binding.setShowHint(tests.isEmpty()));
             }
         });
     }

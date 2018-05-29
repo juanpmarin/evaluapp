@@ -16,7 +16,7 @@ import dagger.android.support.DaggerAppCompatActivity;
 import io.github.juanpmarin.evaluapp.R;
 import io.github.juanpmarin.evaluapp.databinding.ActivityEditTestBinding;
 
-public class EditTestActivity extends DaggerAppCompatActivity implements EditQuestionsController.AdapterCallbacks {
+public class EditTestActivity extends DaggerAppCompatActivity implements QuestionsController.AdapterCallbacks {
 
     public static final String TEST_ID = "testId";
 
@@ -25,7 +25,7 @@ public class EditTestActivity extends DaggerAppCompatActivity implements EditQue
 
     private ActivityEditTestBinding binding;
     private EditTestViewModel editTestViewModel;
-    private EditQuestionsController editQuestionsController;
+    private QuestionsController questionsController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class EditTestActivity extends DaggerAppCompatActivity implements EditQue
         editTestViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(EditTestViewModel.class);
 
-        editQuestionsController = new EditQuestionsController(this, this);
+        questionsController = new QuestionsController(this, this);
 
         initializeErrorPresenter();
         initializeQuestionsList();
@@ -88,13 +88,8 @@ public class EditTestActivity extends DaggerAppCompatActivity implements EditQue
     }
 
     private void initializeQuestionsList() {
-        binding.setAdapter(editQuestionsController.getAdapter());
-        editQuestionsController.setData(Collections.emptyList());
-    }
-
-    @Override
-    public void addQuestion() {
-
+        binding.setAdapter(questionsController.getAdapter());
+        questionsController.setData(Collections.emptyList());
     }
 
     private void saveTest() {

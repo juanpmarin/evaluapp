@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.github.juanpmarin.evaluapp.domain.Resource;
 import io.github.juanpmarin.evaluapp.domain.Test;
 import io.github.juanpmarin.evaluapp.repository.TestRepository;
 
@@ -15,7 +14,7 @@ public class TestsViewModel extends ViewModel {
 
     private TestRepository testRepository;
 
-    private LiveData<Resource<List<Test>>> tests;
+    private LiveData<List<Test>> tests;
 
     @Inject
     TestsViewModel(TestRepository testRepository) {
@@ -24,7 +23,7 @@ public class TestsViewModel extends ViewModel {
         this.tests = testRepository.findAll();
     }
 
-    public LiveData<Resource<List<Test>>> getTests() {
+    public LiveData<List<Test>> getTests() {
         return tests;
     }
 

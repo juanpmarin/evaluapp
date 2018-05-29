@@ -8,13 +8,12 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
-import io.github.juanpmarin.evaluapp.domain.Question;
 import io.github.juanpmarin.evaluapp.domain.Test;
 
 @Dao
 public interface TestDao {
 
-    @Query("SELECT * FROM Test ORDER BY created DESC")
+    @Query("SELECT * FROM Test WHERE `temp` = 0 ORDER BY created DESC")
     LiveData<List<Test>> findAll();
 
     @Query("SELECT * FROM Test WHERE id = :id")

@@ -13,4 +13,6 @@ public abstract class EvaluDb extends RoomDatabase {
 
     abstract public TestDao testDao();
 
+    abstract public QuestionDao questionDao();
+
 }

@@ -2,11 +2,8 @@ package io.github.juanpmarin.evaluapp.ui.tests;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.view.View;
 
 import com.airbnb.epoxy.AutoModel;
-import com.airbnb.epoxy.DataBindingEpoxyModel;
-import com.airbnb.epoxy.OnModelClickListener;
 import com.airbnb.epoxy.TypedEpoxyController;
 
 import java.util.List;
