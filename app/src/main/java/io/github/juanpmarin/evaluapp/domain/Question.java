@@ -21,7 +21,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         parentColumns = "id",
         childColumns = "test_id",
         onDelete = CASCADE),
-        indices = {@Index(value = "test_id")})
+        indices = {@Index(value = "test_id"), @Index(value = "answer_id")})
 @TypeConverters(Converters.class)
 public class Question {
 
@@ -35,16 +35,25 @@ public class Question {
     @ColumnInfo(name = "type")
     private QuestionType type;
 
+    @ColumnInfo(name = "description")
+    private String description;
+
+    @ColumnInfo(name = "answer_id")
+    private String answerId;
+
     @Ignore
-    public Question(String testId) {
+    public Question(String testId, QuestionType type, String description) {
         this.id = UUID.randomUUID().toString();
         this.testId = testId;
+        this.type = type;
+        this.description = description;
     }
 
-    public Question(@NonNull String id, String testId, QuestionType type) {
+    public Question(@NonNull String id, String testId, QuestionType type, String description, String answerId) {
         this.id = id;
         this.testId = testId;
         this.type = type;
+        this.description = description;
+        this.answerId = answerId;
     }
-
 }

@@ -36,26 +36,24 @@ public class TestsFragment extends Fragment implements Injectable, TestsControll
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        testsViewModel = ViewModelProviders.of(this, viewModelFactory)
-                .get(TestsViewModel.class);
-
-        binding.setOnAddClicked(v -> editTest());
-        initTestsList();
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tests, container, false);
+        return binding.getRoot();
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         if (getContext() != null) {
             testsController = new TestsController(getContext(), this);
-        }
 
-        return binding.getRoot();
+            testsViewModel = ViewModelProviders.of(this, viewModelFactory)
+                    .get(TestsViewModel.class);
+
+            binding.setOnAddClicked(v -> editTest());
+            initTestsList();
+        }
     }
 
     private void initTestsList() {

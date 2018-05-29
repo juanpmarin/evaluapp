@@ -9,10 +9,11 @@ import com.airbnb.epoxy.TypedEpoxyController;
 import java.util.List;
 
 import io.github.juanpmarin.evaluapp.CommonHeaderBindingModel_;
+import io.github.juanpmarin.evaluapp.QuestionBindingModel_;
 import io.github.juanpmarin.evaluapp.R;
-import io.github.juanpmarin.evaluapp.domain.Question;
+import io.github.juanpmarin.evaluapp.domain.QuestionWithAnswer;
 
-public class QuestionsController extends TypedEpoxyController<List<Question>> {
+public class QuestionsController extends TypedEpoxyController<List<QuestionWithAnswer>> {
 
     @AutoModel
     CommonHeaderBindingModel_ header;
@@ -29,8 +30,16 @@ public class QuestionsController extends TypedEpoxyController<List<Question>> {
     }
 
     @Override
-    protected void buildModels(List<Question> questions) {
-        header.title(context.getString(R.string.questions));
+    protected void buildModels(List<QuestionWithAnswer> questions) {
+        header.title(context.getString(R.string.questions))
+                .addIf(!questions.isEmpty(), this);
+
+        for (QuestionWithAnswer questionWithAnswer : questions) {
+            new QuestionBindingModel_()
+                    .id(questionWithAnswer.getId())
+                    .bundle(questionWithAnswer)
+                    .addTo(this);
+        }
     }
 
     public interface AdapterCallbacks {

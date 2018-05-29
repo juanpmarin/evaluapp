@@ -10,6 +10,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -49,9 +50,10 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:support-vector-drawable:27.1.1'
+    implementation 'com.android.support:multidex:1.0.3'
 
-    compileOnly 'org.projectlombok:lombok:1.16.20'
-    annotationProcessor 'org.projectlombok:lombok:1.16.20'
+    compileOnly 'org.projectlombok:lombok:1.16.22'
+    annotationProcessor 'org.projectlombok:lombok:1.16.22'
 
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'android.arch.persistence.room:runtime:1.1.0'

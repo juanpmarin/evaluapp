@@ -5,16 +5,17 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import java.util.Collections;
 
 import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
 import io.github.juanpmarin.evaluapp.R;
 import io.github.juanpmarin.evaluapp.databinding.ActivityEditTestBinding;
+import io.github.juanpmarin.evaluapp.domain.QuestionType;
+import io.github.juanpmarin.evaluapp.ui.questions.EditQuestionFragment;
 
 public class EditTestActivity extends DaggerAppCompatActivity implements QuestionsController.AdapterCallbacks {
 
@@ -55,6 +56,10 @@ public class EditTestActivity extends DaggerAppCompatActivity implements Questio
         });
 
         editTestViewModel.setUp(getIntent().getStringExtra(TEST_ID));
+
+        binding.fabTrueFalse.setOnClickListener(v -> editQuestion(QuestionType.TRUE_FALSE));
+        binding.fabMultipleChoice.setOnClickListener(v -> editQuestion(QuestionType.MULTIPLE_CHOICE));
+        binding.fabComplete.setOnClickListener(v -> editQuestion(QuestionType.COMPLETE));
     }
 
     @Override
@@ -89,7 +94,12 @@ public class EditTestActivity extends DaggerAppCompatActivity implements Questio
 
     private void initializeQuestionsList() {
         binding.setAdapter(questionsController.getAdapter());
-        questionsController.setData(Collections.emptyList());
+        editTestViewModel.getQuestionsWithAnswers().observe(this, questions -> {
+            if (questions != null) {
+                questionsController.setData(questions);
+                binding.list.post(() -> binding.setShowHint(questions.isEmpty()));
+            }
+        });
     }
 
     private void saveTest() {
@@ -98,6 +108,15 @@ public class EditTestActivity extends DaggerAppCompatActivity implements Questio
         if (saved) {
             finish();
         }
+    }
+
+    private void editQuestion(QuestionType questionType) {
+        binding.fab.close(true);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        EditQuestionFragment editQuestionFragment = EditQuestionFragment.newInstance(
+                editTestViewModel.getTestId().getValue(),
+                questionType);
+        editQuestionFragment.show(fragmentManager, "edit_question");
     }
 
 }

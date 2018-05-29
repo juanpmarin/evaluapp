@@ -25,4 +25,7 @@ public interface TestDao {
     @Update
     void update(Test test);
 
+    @Query("DELETE FROM Test WHERE `temp` = 1")
+    void deleteTemp();
+
 }

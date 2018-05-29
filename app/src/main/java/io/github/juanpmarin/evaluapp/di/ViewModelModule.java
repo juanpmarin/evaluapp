@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
+import io.github.juanpmarin.evaluapp.ui.questions.EditQuestionViewModel;
 import io.github.juanpmarin.evaluapp.ui.tests.EditTestViewModel;
 import io.github.juanpmarin.evaluapp.ui.tests.TestsViewModel;
 import io.github.juanpmarin.evaluapp.viewmodel.EvaluViewModelFactory;
@@ -22,6 +23,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(EditTestViewModel.class)
     abstract ViewModel bindEditTestViewModel(EditTestViewModel editTestViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EditQuestionViewModel.class)
+    abstract ViewModel bindEditQuestionViewModel(EditQuestionViewModel editQuestionViewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(EvaluViewModelFactory factory);

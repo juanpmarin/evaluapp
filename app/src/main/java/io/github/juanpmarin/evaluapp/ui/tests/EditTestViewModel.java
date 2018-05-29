@@ -10,7 +10,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.github.juanpmarin.evaluapp.R;
-import io.github.juanpmarin.evaluapp.domain.Question;
+import io.github.juanpmarin.evaluapp.domain.QuestionWithAnswer;
 import io.github.juanpmarin.evaluapp.domain.Test;
 import io.github.juanpmarin.evaluapp.repository.QuestionRepository;
 import io.github.juanpmarin.evaluapp.repository.TestRepository;
@@ -21,26 +21,23 @@ public class EditTestViewModel extends ViewModel {
 
     private TestRepository testRepository;
 
-    private QuestionRepository questionRepository;
-
     private MutableLiveData<String> testId;
 
     private MutableLiveData<Integer> error;
 
     private LiveData<Test> test;
 
-    private LiveData<List<Question>> questions;
+    private LiveData<List<QuestionWithAnswer>> questionsWithAnswer;
 
     @Inject
     EditTestViewModel(TestRepository testRepository, QuestionRepository questionRepository) {
         this.testRepository = testRepository;
-        this.questionRepository = questionRepository;
 
         this.testId = new MutableLiveData<>();
         this.error = new MutableLiveData<>();
 
         this.test = switchMap(testId, testRepository::findById);
-        this.questions = switchMap(testId, questionRepository::findAllByTestId);
+        this.questionsWithAnswer = switchMap(testId, questionRepository::findAllWithAnswerByTestId);
     }
 
     void setUp(String testId) {
@@ -58,6 +55,14 @@ public class EditTestViewModel extends ViewModel {
         return test;
     }
 
+    public LiveData<String> getTestId() {
+        return testId;
+    }
+
+    public LiveData<List<QuestionWithAnswer>> getQuestionsWithAnswers() {
+        return questionsWithAnswer;
+    }
+
     MutableLiveData<Integer> getError() {
         return error;
     }
@@ -67,6 +72,13 @@ public class EditTestViewModel extends ViewModel {
 
         if (TextUtils.isEmpty(name)) {
             error.setValue(R.string.error_must_insert_title);
+            return false;
+        }
+
+        List<QuestionWithAnswer> questions = this.questionsWithAnswer.getValue();
+
+        if (questions == null || questions.isEmpty()) {
+            error.setValue(R.string.error_must_add_questions);
             return false;
         }
 

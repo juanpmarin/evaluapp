@@ -1,7 +1,7 @@
 package io.github.juanpmarin.evaluapp;
 
 import android.app.Activity;
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
 
@@ -12,7 +12,7 @@ import dagger.android.HasActivityInjector;
 import io.github.juanpmarin.evaluapp.di.AppInjector;
 import timber.log.Timber;
 
-public class EvaluApp extends Application implements HasActivityInjector {
+public class EvaluApp extends MultiDexApplication implements HasActivityInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;

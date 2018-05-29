@@ -19,4 +19,15 @@
     <string name="true_false">Falso/Verdadero</string>
     <string name="multiple_choice">Selección múltiple</string>
     <string name="complete">Completar</string>
+    <string name="edit_question">Editar pregunta</string>
+    <string name="error_must_add_questions">Debes agregar preguntas al examen</string>
+    <string name="description">Descripción</string>
+    <string name="answer">Respuesta</string>
+    <string name="true_">Verdadero</string>
+    <string name="false_">Falso</string>
+    <string name="right_answer">Respuesta correcta</string>
+    <string name="incorrect_answer">Respuesta incorrecta</string>
+    <string name="error_must_insert_right_answer">Debes insertar la respuesta correcta</string>
+    <string name="error_must_insert_two_answers_at_least">Debes ingresar al menos dos respuestas</string>
+    <string name="error_must_write_description">Debes escribir una descripción para la pregunta</string>
 </resources>

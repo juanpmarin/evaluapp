@@ -4,10 +4,12 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
 import io.github.juanpmarin.evaluapp.domain.Question;
+import io.github.juanpmarin.evaluapp.domain.QuestionOption;
 import io.github.juanpmarin.evaluapp.domain.Test;
 
 @Database(entities = {
         Question.class,
+        QuestionOption.class,
         Test.class}, version = 1)
 public abstract class EvaluDb extends RoomDatabase {
 

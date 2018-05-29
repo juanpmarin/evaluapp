@@ -31,7 +31,10 @@ public class TestRepository {
     }
 
     public void insert(Test test) {
-        appExecutors.diskIO().execute(() -> this.testDao.insert(test));
+        appExecutors.diskIO().execute(() -> {
+            this.testDao.deleteTemp();
+            this.testDao.insert(test);
+        });
     }
 
     public void update(Test test) {

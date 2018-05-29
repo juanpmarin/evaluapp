@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="adapter"
             type="android.support.v7.widget.RecyclerView.Adapter" />
@@ -68,7 +70,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <com.airbnb.epoxy.EpoxyRecyclerView
-                android:id="@+id/recycler_view"
+                android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:adapter="@{adapter}" />
@@ -83,6 +85,7 @@
                 android:layout_marginStart="89dp"
                 android:text="@string/now_add_a_question"
                 android:textAppearance="@android:style/TextAppearance.Medium"
+                android:visibility="@{showHint ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
