@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+
+        <item name="ms_stepperStyle">@style/DotStepperStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -17,5 +19,13 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="DotStepperStyle">
+        <item name="ms_stepperType">dots</item>
+        <item name="ms_activeStepColor">#FFFFFF</item>
+        <item name="ms_inactiveStepColor">#006867</item>
+        <item name="ms_errorColor">@color/ms_errorColor</item>
+        <item name="ms_bottomNavigationBackground">?attr/colorAccent</item>
+    </style>
 
 </resources>

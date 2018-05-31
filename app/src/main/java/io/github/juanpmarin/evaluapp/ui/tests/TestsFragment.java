@@ -18,6 +18,9 @@ import javax.inject.Inject;
 import io.github.juanpmarin.evaluapp.R;
 import io.github.juanpmarin.evaluapp.databinding.FragmentTestsBinding;
 import io.github.juanpmarin.evaluapp.di.Injectable;
+import io.github.juanpmarin.evaluapp.domain.UserType;
+import io.github.juanpmarin.evaluapp.ui.MainActivity;
+import io.github.juanpmarin.evaluapp.ui.solve.SolveTestActivity;
 
 public class TestsFragment extends Fragment implements Injectable, TestsController.AdapterCallbacks {
 
@@ -28,11 +31,25 @@ public class TestsFragment extends Fragment implements Injectable, TestsControll
     private TestsViewModel testsViewModel;
     private TestsController testsController;
 
-    public static TestsFragment newInstance() {
+    private UserType userType;
+    private String userId;
+
+    public static TestsFragment newInstance(UserType userType, String userId) {
         TestsFragment fragment = new TestsFragment();
         Bundle args = new Bundle();
+        args.putInt(MainActivity.USER_TYPE, userType.ordinal());
+        args.putString(MainActivity.USER_ID, userId);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            userType = UserType.values()[getArguments().getInt(MainActivity.USER_TYPE)];
+            userId = getArguments().getString(MainActivity.USER_ID);
+        }
     }
 
     @Override
@@ -50,6 +67,11 @@ public class TestsFragment extends Fragment implements Injectable, TestsControll
 
             testsViewModel = ViewModelProviders.of(this, viewModelFactory)
                     .get(TestsViewModel.class);
+
+
+            if (userType == UserType.STUDENT) {
+                binding.fab.setVisibility(View.GONE);
+            }
 
             binding.setOnAddClicked(v -> editTest());
             initTestsList();
@@ -80,9 +102,18 @@ public class TestsFragment extends Fragment implements Injectable, TestsControll
         startActivity(intent);
     }
 
+    private void solveTest(String id) {
+        Intent intent = new Intent(getContext(), SolveTestActivity.class);
+        intent.putExtra(SolveTestActivity.TEST_ID, id);
+        intent.putExtra(MainActivity.USER_ID, userId);
+        startActivity(intent);
+    }
+
     @Override
     public void testClicked(String id) {
-        editTest(id);
+        if (userType == UserType.STUDENT) {
+            solveTest(id);
+        }
     }
 
 }

@@ -44,7 +44,7 @@ public class EditQuestionViewModel extends ViewModel {
         }
 
         Question question = new Question(testId, QuestionType.TRUE_FALSE, description);
-        QuestionOption option = new QuestionOption(question.getId(), answer.toString());
+        QuestionOption option = new QuestionOption(question.getId(), answer ? "Verdadero" : "Falso");
         question.setAnswerId(option.getId());
 
         saveQuestionWithOptions(question, Collections.singletonList(option));

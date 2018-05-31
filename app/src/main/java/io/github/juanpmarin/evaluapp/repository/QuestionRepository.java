@@ -10,6 +10,7 @@ import io.github.juanpmarin.evaluapp.AppExecutors;
 import io.github.juanpmarin.evaluapp.db.QuestionDao;
 import io.github.juanpmarin.evaluapp.domain.Question;
 import io.github.juanpmarin.evaluapp.domain.QuestionOption;
+import io.github.juanpmarin.evaluapp.domain.QuestionWithAllOptions;
 import io.github.juanpmarin.evaluapp.domain.QuestionWithAnswer;
 
 public class QuestionRepository {
@@ -24,10 +25,6 @@ public class QuestionRepository {
         this.appExecutors = appExecutors;
     }
 
-    public LiveData<List<Question>> findAllByTestId(String testId) {
-        return this.questionDao.findAllByTestId(testId);
-    }
-
     public LiveData<List<QuestionWithAnswer>> findAllWithAnswerByTestId(String testId) {
         return this.questionDao.findAllWithAnswerByTestId(testId);
     }
@@ -36,5 +33,13 @@ public class QuestionRepository {
         appExecutors.diskIO().execute(() -> {
             this.questionDao.saveWithOptions(question, options);
         });
+    }
+
+    public LiveData<List<String>> findAllIdsByTestId(String testId) {
+        return questionDao.findAllIdsByTestId(testId);
+    }
+
+    public LiveData<QuestionWithAllOptions> findQuestionWithAnswersById(String id) {
+        return questionDao.findQuestionWithAnswersById(id);
     }
 }

@@ -30,4 +30,11 @@
     <string name="error_must_insert_right_answer">Debes insertar la respuesta correcta</string>
     <string name="error_must_insert_two_answers_at_least">Debes ingresar al menos dos respuestas</string>
     <string name="error_must_write_description">Debes escribir una descripción para la pregunta</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="answers_saved">Tus respuestas han sido guardadas</string>
+    <string name="what_is_your_id">¿Cuál es tu identificación?</string>
+    <string name="enter">Entrar</string>
+    <string name="student">Estudiante: %1$s</string>
 </resources>

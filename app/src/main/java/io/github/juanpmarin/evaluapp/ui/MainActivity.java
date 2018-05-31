@@ -17,15 +17,22 @@ import javax.inject.Inject;
 import dagger.android.support.DaggerAppCompatActivity;
 import io.github.juanpmarin.evaluapp.R;
 import io.github.juanpmarin.evaluapp.databinding.ActivityMainBinding;
+import io.github.juanpmarin.evaluapp.domain.UserType;
 import io.github.juanpmarin.evaluapp.ui.results.ResultsFragment;
 import io.github.juanpmarin.evaluapp.ui.tests.TestsFragment;
 
 public class MainActivity extends DaggerAppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+    public static final String USER_TYPE = "userType";
+    public static final String USER_ID = "userId";
+
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
     private MainViewModel mainViewModel;
+
+    private UserType userType;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,13 @@ public class MainActivity extends DaggerAppCompatActivity implements BottomNavig
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+
+        userType = UserType.values()[getIntent().getIntExtra(USER_TYPE, 0)];
+        userId = getIntent().getStringExtra(USER_ID);
+
+        if (userType == UserType.STUDENT) {
+            binding.navigation.getMenu().removeItem(R.id.navigation_results);
         }
 
         binding.setNavigationCallback(this);
@@ -49,7 +63,7 @@ public class MainActivity extends DaggerAppCompatActivity implements BottomNavig
     }
 
     private PagerAdapter getNavigationAdapter() {
-        return new NavigationPagerAdapter(getSupportFragmentManager());
+        return new NavigationPagerAdapter(getSupportFragmentManager(), userType, userId);
     }
 
     @Override
@@ -75,15 +89,20 @@ public class MainActivity extends DaggerAppCompatActivity implements BottomNavig
 
     private static class NavigationPagerAdapter extends FragmentPagerAdapter {
 
-        NavigationPagerAdapter(FragmentManager fm) {
+        private UserType userType;
+        private String userId;
+
+        NavigationPagerAdapter(FragmentManager fm, UserType userType, String userId) {
             super(fm);
+            this.userType = userType;
+            this.userId = userId;
         }
 
         @Override
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TestsFragment.newInstance();
+                    return TestsFragment.newInstance(userType, userId);
                 case 1:
                     return ResultsFragment.newInstance();
                 default:
@@ -93,7 +112,7 @@ public class MainActivity extends DaggerAppCompatActivity implements BottomNavig
 
         @Override
         public int getCount() {
-            return 2;
+            return userType == UserType.TEACHER ? 2 : 1;
         }
 
     }

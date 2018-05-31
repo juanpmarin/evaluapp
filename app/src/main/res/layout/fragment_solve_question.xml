@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.solve.SolveQuestionFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="io.github.juanpmarin.evaluapp.domain.QuestionType" />
+
+        <variable
+            name="question"
+            type="io.github.juanpmarin.evaluapp.domain.Question" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="24dp"
+            android:paddingStart="24dp"
+            android:paddingTop="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{question.description}"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@color/colorHeaderText" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{question.type == QuestionType.COMPLETE ? View.VISIBLE : View.GONE}">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/answer"
+                    android:inputType="textCapSentences" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:visibility="@{question.type == QuestionType.TRUE_FALSE ? View.VISIBLE : View.GONE}">
+
+                <RadioButton
+                    android:id="@+id/radio_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/true_" />
+
+                <RadioButton
+                    android:id="@+id/radio_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="@string/false_" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:visibility="@{question.type == QuestionType.MULTIPLE_CHOICE ? View.VISIBLE : View.GONE}" />
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

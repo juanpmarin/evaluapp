@@ -25,6 +25,8 @@
             android:name=".ui.tests.EditTestActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
+        <activity android:name=".ui.solve.SolveTestActivity" />
+        <activity android:name=".ui.results.ViewResultActivity"></activity>
     </application>
 
 </manifest>
